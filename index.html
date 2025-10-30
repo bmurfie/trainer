@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trainer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root, html[data-theme='vibrant-light'] {
+        --color-background: #f8fafc; /* slate-50 */
+        --color-surface: #ffffff; /* white */
+        --color-border: #e2e8f0; /* slate-200 */
+        --color-primary: #0ea5e9; /* sky-500 */
+        --color-primary-hover: #0284c7; /* sky-600 */
+        --color-primary-foreground: #ffffff;
+        --color-text-base: #0f172a; /* slate-900 */
+        --color-text-muted: #64748b; /* slate-500 */
+        --color-card-shadow: #0f172a;
+      }
+      html[data-theme='vibrant-dark'] {
+        --color-background: #020617; /* slate-950 */
+        --color-surface: #0f172a; /* slate-900 */
+        --color-border: #1e293b; /* slate-800 */
+        --color-primary: #38bdf8; /* sky-400 */
+        --color-primary-hover: #7dd3fc; /* sky-300 */
+        --color-primary-foreground: #020617;
+        --color-text-base: #f1f5f9; /* slate-100 */
+        --color-text-muted: #64748b; /* slate-500 */
+        --color-card-shadow: #000000;
+      }
+      html[data-theme='bubblegum'] {
+        --color-background: #fdf2f8; /* pink-50 */
+        --color-surface: #ffffff;
+        --color-border: #fbcfe8; /* pink-200 */
+        --color-primary: #ec4899; /* pink-500 */
+        --color-primary-hover: #db2777; /* pink-600 */
+        --color-primary-foreground: #ffffff;
+        --color-text-base: #581c87; /* purple-900 */
+        --color-text-muted: #a855f7; /* purple-500 */
+        --color-card-shadow: #ec4899;
+      }
+      html[data-theme='minimalist-light'] {
+        --color-background: #ffffff;
+        --color-surface: #f9fafb; /* gray-50 */
+        --color-border: #e5e7eb; /* gray-200 */
+        --color-primary: #111827; /* gray-900 */
+        --color-primary-hover: #374151; /* gray-700 */
+        --color-primary-foreground: #ffffff;
+        --color-text-base: #111827; /* gray-900 */
+        --color-text-muted: #6b7280; /* gray-500 */
+        --color-card-shadow: #000000;
+      }
+      html[data-theme='minimalist-dark'] {
+        --color-background: #111827; /* gray-900 */
+        --color-surface: #1f2937; /* gray-800 */
+        --color-border: #374151; /* gray-700 */
+        --color-primary: #f9fafb; /* gray-50 */
+        --color-primary-hover: #d1d5db; /* gray-300 */
+        --color-primary-foreground: #111827;
+        --color-text-base: #f9fafb; /* gray-50 */
+        --color-text-muted: #9ca3af; /* gray-400 */
+        --color-card-shadow: #000000;
+      }
+      html[data-theme='monochrome'] {
+        --color-background: #ffffff;
+        --color-surface: #ffffff;
+        --color-border: #000000;
+        --color-primary: #000000;
+        --color-primary-hover: #4b5563;
+        --color-primary-foreground: #ffffff;
+        --color-text-base: #000000;
+        --color-text-muted: #525252;
+        --color-card-shadow: #000000;
+      }
+       html[data-theme='monochrome-dark'] {
+        --color-background: #000000;
+        --color-surface: #000000;
+        --color-border: #ffffff;
+        --color-primary: #ffffff;
+        --color-primary-hover: #d1d5db;
+        --color-primary-foreground: #000000;
+        --color-text-base: #ffffff;
+        --color-text-muted: #a3a3a3;
+        --color-card-shadow: #ffffff;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background-color: var(--color-background);
+        color: var(--color-text-base);
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fade-in-up {
+        animation: fadeInUp 0.5s ease-out forwards;
+        opacity: 0; /* Start hidden */
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        darkMode: 'class', // Keep for compatibility if needed, but data-theme is primary
+        theme: {
+          extend: {
+            colors: {
+              background: 'var(--color-background)',
+              surface: 'var(--color-surface)',
+              border: 'var(--color-border)',
+              primary: {
+                DEFAULT: 'var(--color-primary)',
+                hover: 'var(--color-primary-hover)',
+                foreground: 'var(--color-primary-foreground)',
+              },
+              'text-base': 'var(--color-text-base)',
+              'text-muted': 'var(--color-text-muted)',
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            boxShadow: {
+                'card': '0 4px 6px -1px rgba(var(--color-card-shadow), 0.05), 0 2px 4px -2px rgba(var(--color-card-shadow), 0.05)',
+            }
+          },
+        },
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "recharts": "https://aistudiocdn.com/recharts@^3.3.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.28.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="antialiased font-sans">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
