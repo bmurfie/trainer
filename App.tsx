@@ -80,7 +80,16 @@ const App: React.FC = () => {
   const renderView = () => {
     switch (currentView) {
       case 'dashboard':
-        return <Dashboard foodLogs={foodLogs} weightHistory={weightHistory} nutritionPlan={NUTRITION_PLAN} theme={theme} onStartWorkout={handleStartWorkout} workoutHistory={workoutHistory} />;
+        return (
+          <Dashboard
+            foodLogs={foodLogs}
+            weightHistory={weightHistory}
+            nutritionPlan={NUTRITION_PLAN}
+            theme={theme}
+            onStartWorkout={handleStartWorkout}
+            workoutHistory={workoutHistory}
+          />
+        );
       case 'workout':
         return <WorkoutLogger 
             workoutHistory={workoutHistory} 
@@ -98,7 +107,16 @@ const App: React.FC = () => {
       case 'catalog':
         return <Catalog />;
       default:
-        return <Dashboard foodLogs={foodLogs} weightHistory={weightHistory} nutritionPlan={NUTRITION_PLAN} theme={theme} onStartWorkout={handleStartWorkout} workoutHistory={workoutHistory}/>;
+        return (
+          <Dashboard
+            foodLogs={foodLogs}
+            weightHistory={weightHistory}
+            nutritionPlan={NUTRITION_PLAN}
+            theme={theme}
+            onStartWorkout={handleStartWorkout}
+            workoutHistory={workoutHistory}
+          />
+        );
     }
   };
 
